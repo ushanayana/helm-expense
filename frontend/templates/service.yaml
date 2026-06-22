@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  namespace: expense
+spec:
+  type: LoadBalancer
+  selector:
+    component: frontend
+    project: expense
+    tier: web
+  ports:
+  - protocol: TCP
+    port: 80 #service-port
+    targetPort: {{ .Values.configmap.port }} #target-port
+---
+# apiVersion: elbv2.k8s.aws/v1beta1
+# kind: TargetGroupBinding
+# metadata:
+#   name: frontend
+#   namespace: expense
+# spec:
+#   serviceRef:
+#     name: frontend # route traffic to the awesome-service
+#     port: 80
+#   targetGroupARN: arn:aws:elasticloadbalancing:us-east-1:783561175349:targetgroup/expense-dev-frontend/90e33fc938d28aec
