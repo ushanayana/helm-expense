@@ -5,4 +5,4 @@ metadata:
   namespace: expense
 data:
   #DB_HOST: mysql # mysql component service name
-  DB_HOST: db-dev.daws78s.shop
+  DB_HOST: mysql
