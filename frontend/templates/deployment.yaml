@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: ushanayana/frontend: {{ .Values.deployment.imageVersion }}
+        image: ushanayana/frontend:{{ .Values.deployment.imageVersion }}
         resources:
           requests:
             cpu: "100m"
