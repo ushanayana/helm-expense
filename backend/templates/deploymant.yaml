@@ -23,34 +23,9 @@ spec:
         project: expense
         tier: app
     spec:
-      initContainers:
-      - name: init-myservice
-        image: busybox:1.28
-        command: ['sh', '-c', "until nslookup db-dev.daws78s.shop; do echo waiting for myservice; sleep 2; done"]
       containers:
       - name: backend
         image: ushanayana/backend:{{ .Values.deployment.imageVersion }}
-        resources:
-          requests:
-            cpu: "100m"
-            memory: "128Mi"
-          limits:
-            cpu: "150m"
-            memory: "256Mi"
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 8080
-          failureThreshold: 2
-          periodSeconds: 5
-          initialDelaySeconds: 30
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: 8080
-          failureThreshold: 2
-          periodSeconds: 5
-          initialDelaySeconds: 30
         envFrom:
         - configMapRef:
             name: backend

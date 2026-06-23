@@ -6,3 +6,4 @@ metadata:
 data:
   #DB_HOST: mysql # mysql component service name
   DB_HOST: mysql
+  
